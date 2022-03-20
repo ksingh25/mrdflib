@@ -9,6 +9,9 @@ mRDFLib has been tested by compiling [micropython](https://github.com/micropytho
 To test it quickly, one either needs linux with python3 or ESP32 with 4MB of SPIRAM. 
 For testing over ESP32, one needs to install [IDF (tested with v4.0.2)](https://github.com/espressif/esp-idf) as well as tools like adafruit-ampy, picocom The last two can be installed using `sudo apt-get install adapfruit-ampy picocom`. For installing IDF one has to follow instructions provided in the README.md file in micropython/ports/esp32/ folder of micropython.
 
+Note that IDF is needed to compile firmware of micropython for ESP32. 
+Other alternative is to just [download the compiled firmware from here](https://github.com/ksingh25/Files).
+
 ## Linux 
 To test it on Linux, please compile the [micropython](https://github.com/micropython/micropython) with all REGEX options supported by micropython. This can be done by modifying the file micropython/ports/unix/mpconfigport.h
 
