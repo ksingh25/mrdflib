@@ -70,8 +70,9 @@ $ git clone https://github.com/ksingh25/mrdflib.git
 $ cd mRDFLib
 ```
 Upload all the files manually or use the copy.py script or WebREPL over WiFi. 
-**Uploading files over UART takes around 7 to 10 minutes.** In future, baudrate may be increased.  
-mRDFLib is around 800KB and thus we will also reduce its size.
+**Uploading files over UART takes around 7 to 10 minutes.** In future, baudrate may be increased or 
+transfer through WiFi may be used (telnet, ftp, webrepl, http, etc.).  
+mRDFLib is around 800KB and thus the aim is also to reduce its size.
 
 Assuming that the port is /dev/ttyUSB0:
 
