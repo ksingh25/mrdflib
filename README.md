@@ -86,7 +86,7 @@ $ ampy --port /dev/ttyUSB0 --baud 115200 put wlan.py
 
 
 ## Test some examples
-You may enter the terminal using picocom.
+On ESP32, you may enter the terminal using picocom.
 **Note that first import and first script takes several seconds to run.**
 After that it is much faster.
 One may try directly uploading the compiled .pyc files for better execution speed.
@@ -98,7 +98,7 @@ $ picocom -b 115200 /dev/ttyUSB0
 >>> gc.mem_free()
 ```
 
-With las two commands please check if 4MB (around 400000) memory is available.
+With last two commands please check if 4MB (around 400000) memory is available.
 
 1. Add some facts to the graph and serialize them in different formats.
 ```
