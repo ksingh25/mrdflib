@@ -67,7 +67,7 @@ You may skip this step if you just need to test it on Linux with micropython.
 The step is to upload the files on ESP32. 
 ```
 $ git clone https://github.com/ksingh25/mrdflib.git
-$ cd mRDFLib
+$ cd mrdflib
 ```
 Upload all the files manually or use the copy.py script or WebREPL over WiFi. 
 **Uploading files over UART takes around 7 to 10 minutes.** In future, baudrate may be increased or 
