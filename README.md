@@ -91,7 +91,14 @@ You may enter the terminal using picocom.
 After that it is much faster.
 One may try directly uploading the compiled .pyc files for better execution speed.
 
-`$ picocom -b 115200 /dev/ttyUSB0`
+```
+$ picocom -b 115200 /dev/ttyUSB0
+
+>>> import gc
+>>> gc.mem_free()
+```
+
+With las two commands please check if 4MB (around 400000) memory is available.
 
 1. Add some facts to the graph and serialize them in different formats.
 ```
