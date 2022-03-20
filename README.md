@@ -1,6 +1,6 @@
 # mrdflib
 mRDFLib is a fork and port of [RDFLib](https://github.com/RDFLib/rdflib) for micropython. It is a library for working with RDF. 
-It is a work in progress and the goal is to make the code as well as memory footprint as small as possible. 
+It is a work in progress and the goal is to make the code and memory footprint as small as possible. 
 Currently several functionalities like XML, isodate, Decimal (and thus _XSD_DECIMAL, _XSD_DATETIME, _XSD_DATE, etc.) are not working. Notation3 parser needs some more debugging.
 
 mRDFLib has been tested by compiling [micropython](https://github.com/micropython/micropython) on Linux and ESP32 (with 4MB PSRAM for example esp32-one, ESP32 cam, ESP32-S3 with PSRAM etc. Note that ESP32-S3 is new and needs a separate firmware compilation.).
