@@ -4,23 +4,6 @@ Dirt Simple Events
 A Dispatcher (or a subclass of Dispatcher) stores event handlers that
 are 'fired' simple event objects when interesting things happen.
 
-Create a dispatcher:
-
-  >>> d = Dispatcher()
-
-Now create a handler for the event and subscribe it to the dispatcher
-to handle Event events.  A handler is a simple function or method that
-accepts the event as an argument:
-
-  >>> def handler1(event): print(repr(event))
-  >>> d.subscribe(Event, handler1) # doctest: +ELLIPSIS
-  <rdflib.events.Dispatcher object at ...>
-
-Now dispatch a new event into the dispatcher, and see handler1 get
-fired:
-
-  >>> d.dispatch(Event(foo='bar', data='yours', used_by='the event handlers'))
-  <rdflib.events.Event ['data', 'foo', 'used_by']>
 """
 
 __all__ = ["Event", "Dispatcher"]

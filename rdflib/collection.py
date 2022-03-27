@@ -11,38 +11,7 @@ class Collection(object):
     See "Emulating container types":
     https://docs.python.org/reference/datamodel.html#emulating-container-types
 
-    >>> from rdflib.graph import Graph
-    >>> from pprint import pprint
-    >>> listName = BNode()
-    >>> g = Graph('Memory')
-    >>> listItem1 = BNode()
-    >>> listItem2 = BNode()
-    >>> g.add((listName, RDF.first, Literal(1))) # doctest: +ELLIPSIS
-    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-    >>> g.add((listName, RDF.rest, listItem1)) # doctest: +ELLIPSIS
-    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-    >>> g.add((listItem1, RDF.first, Literal(2))) # doctest: +ELLIPSIS
-    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-    >>> g.add((listItem1, RDF.rest, listItem2)) # doctest: +ELLIPSIS
-    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-    >>> g.add((listItem2, RDF.rest, RDF.nil)) # doctest: +ELLIPSIS
-    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-    >>> g.add((listItem2, RDF.first, Literal(3))) # doctest: +ELLIPSIS
-    <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-    >>> c = Collection(g,listName)
-    >>> pprint([term.n3() for term in c])
-    [u'"1"^^<http://www.w3.org/2001/XMLSchema#integer>',
-     u'"2"^^<http://www.w3.org/2001/XMLSchema#integer>',
-     u'"3"^^<http://www.w3.org/2001/XMLSchema#integer>']
-
-    >>> Literal(1) in c
-    True
-    >>> len(c)
-    3
-    >>> c._get_container(1) == listItem1
-    True
-    >>> c.index(Literal(2)) == 1
-    True
+   
     """
 
     def __init__(self, graph, uri, seq=[]):
@@ -51,30 +20,7 @@ class Collection(object):
         self += seq
 
     def n3(self):
-        """
-        >>> from rdflib.graph import Graph
-        >>> listName = BNode()
-        >>> g = Graph('Memory')
-        >>> listItem1 = BNode()
-        >>> listItem2 = BNode()
-        >>> g.add((listName, RDF.first, Literal(1))) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((listName, RDF.rest, listItem1)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((listItem1, RDF.first, Literal(2))) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((listItem1, RDF.rest, listItem2)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((listItem2, RDF.rest, RDF.nil)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((listItem2, RDF.first, Literal(3))) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> c = Collection(g, listName)
-        >>> print(c.n3()) #doctest: +NORMALIZE_WHITESPACE
-        ( "1"^^<http://www.w3.org/2001/XMLSchema#integer>
-          "2"^^<http://www.w3.org/2001/XMLSchema#integer>
-          "3"^^<http://www.w3.org/2001/XMLSchema#integer> )
-        """
+     
         return "( %s )" % (" ".join([i.n3() for i in self]))
 
     def _get_container(self, index):
@@ -135,48 +81,7 @@ class Collection(object):
             raise IndexError(key)
 
     def __delitem__(self, key):
-        """
-        >>> from rdflib.namespace import RDF, RDFS
-        >>> from rdflib import Graph
-        >>> from pprint import pformat
-        >>> g = Graph()
-        >>> a = BNode('foo')
-        >>> b = BNode('bar')
-        >>> c = BNode('baz')
-        >>> g.add((a, RDF.first, RDF.type)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((a, RDF.rest, b)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((b, RDF.first, RDFS.label)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((b, RDF.rest, c)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((c, RDF.first, RDFS.comment)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> g.add((c, RDF.rest, RDF.nil)) # doctest: +ELLIPSIS
-        <Graph identifier=... (<class 'rdflib.graph.Graph'>)>
-        >>> len(g)
-        6
-        >>> def listAncestry(node, graph):
-        ...   for i in graph.subjects(RDF.rest, node):
-        ...     yield i
-        >>> [str(node.n3())
-        ...   for node in g.transitiveClosure(listAncestry, RDF.nil)]
-        ['_:baz', '_:bar', '_:foo']
-        >>> lst = Collection(g, a)
-        >>> len(lst)
-        3
-        >>> b == lst._get_container(1)
-        True
-        >>> c == lst._get_container(2)
-        True
-        >>> del lst[1]
-        >>> len(lst)
-        2
-        >>> len(g)
-        4
-
-        """
+        
         self[key]  # to raise any potential key exceptions
         graph = self.graph
         current = self._get_container(key)
